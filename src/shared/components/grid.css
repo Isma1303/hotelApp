@@ -1,0 +1,456 @@
+/* Dark theme for CLGrid */
+.cl-grid-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background-color: #0f182a !important;
+  border: 1px solid #1e2a44 !important;
+  border-radius: 0.75rem !important;
+  overflow: hidden;
+}
+
+.cl-grid-title {
+  margin: 0;
+  padding: 1rem 1.5rem 0.5rem 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #e8ecf5;
+  background-color: #0f182a;
+}
+
+.cl-grid-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* DataTable dark theme */
+.cl-grid-wrapper .cl-grid-dark {
+  background-color: #0f182a !important;
+  color: #e8ecf5 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  overflow: hidden;
+}
+
+.cl-grid-dark {
+  background-color: #0f182a !important;
+  color: #e8ecf5 !important;
+  border: 1px solid #1e2a44 !important;
+  border-radius: 0.75rem !important;
+  overflow: hidden;
+}
+
+.cl-grid-dark .p-datatable {
+  border-color: #1e2a44 !important;
+}
+
+.cl-grid-dark .p-datatable .p-datatable-header {
+  background-color: #0a0f1a !important;
+  color: #e8ecf5 !important;
+  border-color: #1e2a44 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.cl-grid-dark .p-datatable .p-datatable-footer {
+  background-color: #0a0f1a !important;
+  color: #e8ecf5 !important;
+  border-color: #1e2a44 !important;
+  padding: 1rem !important;
+}
+
+.cl-grid-dark .p-datatable-thead > tr > th {
+  background-color: #0a0f1a !important;
+  color: #e8ecf5 !important;
+  border-color: #1e2a44 !important;
+  border: 1px solid #1e2a44 !important;
+  font-weight: 600;
+  padding: 1rem !important;
+  text-align: left !important;
+}
+
+.cl-grid-dark .p-datatable-thead > tr > th .p-column-header-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cl-grid-dark .p-datatable-tbody > tr {
+  background-color: #0f182a !important;
+  border-color: #1e2a44 !important;
+}
+
+.cl-grid-dark .p-datatable-tbody > tr > td {
+  color: #e8ecf5 !important;
+  border: 1px solid #1e2a44 !important;
+  border-color: #1e2a44 !important;
+  padding: 1rem !important;
+}
+
+.cl-grid-dark .p-datatable-tbody > tr:hover {
+  background-color: #1a2440 !important;
+}
+
+.cl-grid-dark .p-datatable-tbody > tr.p-highlight {
+  background-color: #1e2a44 !important;
+}
+
+/* Paginator dark theme */
+.cl-grid-dark .p-paginator {
+  background-color: transparent !important;
+  color: #e8ecf5 !important;
+  border: none !important;
+  padding: 1rem !important;
+  gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cl-grid-dark .p-paginator-pages {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.cl-grid-dark .p-paginator .p-paginator-element {
+  color: #e8ecf5 !important;
+}
+
+.cl-grid-dark .p-paginator-pages .p-paginator-page {
+  color: #e8ecf5 !important;
+  background-color: transparent !important;
+  border: 1px solid #1e2a44 !important;
+  border-radius: 0.375rem;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cl-grid-dark .p-paginator-pages .p-paginator-page.p-highlight {
+  background-color: #3b82f6 !important;
+  color: #ffffff !important;
+  border-color: #3b82f6 !important;
+  font-weight: 600;
+}
+
+.cl-grid-dark .p-paginator-pages .p-paginator-page:hover {
+  background-color: #1e2a44 !important;
+  border-color: #3b82f6 !important;
+}
+
+.cl-grid-dark .p-paginator .p-paginator-current {
+  color: #9ca3af !important;
+  font-size: 0.875rem;
+}
+
+.cl-grid-dark .p-paginator .p-paginator-first,
+.cl-grid-dark .p-paginator .p-paginator-prev,
+.cl-grid-dark .p-paginator .p-paginator-next,
+.cl-grid-dark .p-paginator .p-paginator-last {
+  color: #e8ecf5 !important;
+  border: 1px solid #1e2a44 !important;
+  border-radius: 0.375rem;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent !important;
+}
+
+.cl-grid-dark .p-paginator .p-paginator-first:hover,
+.cl-grid-dark .p-paginator .p-paginator-prev:hover,
+.cl-grid-dark .p-paginator .p-paginator-next:hover,
+.cl-grid-dark .p-paginator .p-paginator-last:hover {
+  background-color: #1e2a44 !important;
+  border-color: #3b82f6 !important;
+}
+
+.cl-grid-dark .p-dropdown {
+  background-color: #0f182a !important;
+  border-color: #1e2a44 !important;
+  color: #e8ecf5 !important;
+}
+
+.cl-grid-dark .p-dropdown .p-dropdown-label {
+  color: #e8ecf5 !important;
+}
+
+.cl-grid-dark .p-dropdown-panel {
+  background-color: #0a0f1a !important;
+  border-color: #1e2a44 !important;
+}
+
+.cl-grid-dark .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  color: #e8ecf5 !important;
+}
+
+.cl-grid-dark .p-dropdown-panel .p-dropdown-items .p-dropdown-item:hover {
+  background-color: #1e2a44 !important;
+}
+
+/* Input and filter dark theme */
+.cl-grid-wrapper .p-inputtext {
+  background-color: #0f182a !important;
+  border-color: #1e2a44 !important;
+  color: #e8ecf5 !important;
+}
+
+.cl-grid-wrapper .p-inputtext:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15) !important;
+  background-color: #0f182a !important;
+}
+
+.cl-grid-wrapper .p-inputtext::placeholder {
+  color: #6b7280 !important;
+}
+
+.cl-grid-dark .p-inputtext {
+  background-color: #0f182a !important;
+  border-color: #1e2a44 !important;
+  color: #e8ecf5 !important;
+}
+
+.cl-grid-dark .p-inputtext:focus {
+  border-color: #3b82f6 !important;
+  box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15) !important;
+  background-color: #0f182a !important;
+}
+
+.cl-grid-dark .p-inputtext::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Toolbar dark theme */
+.cl-grid-wrapper .p-toolbar {
+  background-color: #0a0f1a !important;
+  border: none !important;
+  border-bottom: 1px solid #1e2a44 !important;
+  padding: 1rem !important;
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+.cl-grid-dark .p-datatable .p-datatable-header .p-toolbar {
+  background-color: transparent !important;
+  border: none !important;
+  padding: 1rem !important;
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.cl-grid-wrapper .p-toolbar .p-toolbar-group-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  order: 1;
+}
+
+.cl-grid-wrapper .p-toolbar .p-toolbar-group-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  order: 2;
+}
+
+.cl-grid-dark .p-datatable .p-datatable-header .p-toolbar .p-toolbar-group-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  order: 1;
+}
+
+.cl-grid-dark .p-datatable .p-datatable-header .p-toolbar .p-toolbar-group-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  order: 2;
+}
+
+/* Buttons in toolbar */
+.cl-grid-wrapper .p-button.p-button-rounded.p-button-text {
+  color: #9ca3af !important;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
+}
+
+.cl-grid-wrapper .p-button.p-button-rounded.p-button-text:hover {
+  background-color: rgba(59, 130, 246, 0.1) !important;
+  color: #3b82f6 !important;
+  border-color: #3b82f6 !important;
+}
+
+.cl-grid-wrapper .p-button.p-button-rounded.p-button-text:focus {
+  box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15) !important;
+}
+
+.cl-grid-wrapper .p-button.p-button-text {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.cl-grid-wrapper .p-button.p-button-outlined {
+  border: 1px solid #1e2a44 !important;
+  color: #9ca3af !important;
+  background-color: transparent !important;
+}
+
+.cl-grid-wrapper .p-button.p-button-outlined:hover {
+  background-color: rgba(59, 130, 246, 0.1) !important;
+  color: #3b82f6 !important;
+  border-color: #3b82f6 !important;
+}
+
+.cl-grid-dark .p-datatable .p-datatable-header .p-button.p-button-rounded.p-button-text {
+  color: #9ca3af !important;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
+}
+
+.cl-grid-dark .p-datatable .p-datatable-header .p-button.p-button-rounded.p-button-text:hover {
+  background-color: rgba(59, 130, 246, 0.1) !important;
+  color: #3b82f6 !important;
+  border-color: #3b82f6 !important;
+}
+
+.cl-grid-dark .p-datatable .p-datatable-header .p-button.p-button-rounded.p-button-text:focus {
+  box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15) !important;
+}
+
+.cl-grid-dark .p-datatable .p-datatable-header .p-button.p-button-text {
+  background-color: transparent !important;
+  border: none !important;
+}
+
+.cl-grid-dark .p-datatable .p-datatable-header .p-button.p-button-outlined {
+  border: 1px solid #1e2a44 !important;
+  color: #9ca3af !important;
+  background-color: transparent !important;
+}
+
+.cl-grid-dark .p-datatable .p-datatable-header .p-button.p-button-outlined:hover {
+  background-color: rgba(59, 130, 246, 0.1) !important;
+  color: #3b82f6 !important;
+  border-color: #3b82f6 !important;
+}
+
+/* Scrollbar dark theme */
+.cl-grid-dark .p-datatable-scrollable .p-datatable-scrollable-body::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.cl-grid-dark .p-datatable-scrollable .p-datatable-scrollable-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.cl-grid-dark .p-datatable-scrollable .p-datatable-scrollable-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.cl-grid-dark .p-datatable-scrollable .p-datatable-scrollable-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Loading overlay */
+.cl-grid-dark .p-datatable-loading-overlay {
+  background-color: rgba(13, 21, 37, 0.8) !important;
+}
+
+.cl-grid-dark .p-datatable-loading-overlay .p-progress-spinner {
+  color: #3b82f6 !important;
+}
+
+/* Empty message */
+.cl-grid-dark .p-datatable-emptymessage > tr > td {
+  color: #9ca3af !important;
+  padding: 2rem !important;
+  text-align: center;
+}
+
+/* Bootstrap icons support */
+.cl-grid-dark .p-datatable .p-datatable-header .p-button i.bi {
+  font-size: 1.25rem;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .cl-grid-dark .p-datatable-thead > tr > th,
+  .cl-grid-dark .p-datatable-tbody > tr > td {
+    padding: 0.75rem !important;
+  }
+
+  .cl-grid-container .p-toolbar {
+    gap: 0.5rem;
+  }
+}
+
+/* Empty Message Styling */
+.cl-grid-empty-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 3rem 2rem;
+  text-align: center;
+  min-height: 300px;
+  background-color: #0f182a !important;
+  color: #e8ecf5;
+}
+
+.cl-grid-empty-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(59, 130, 246, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(59, 130, 246, 0.2);
+}
+
+.cl-grid-empty-icon i {
+  font-size: 2rem;
+  color: #6b7280;
+}
+
+.cl-grid-empty-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #e8ecf5;
+}
+
+.cl-grid-empty-subtitle {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #9ca3af;
+  max-width: 400px;
+  line-height: 1.5;
+}
+
+.cl-grid-empty-message .p-button {
+  margin-top: 0.5rem;
+}

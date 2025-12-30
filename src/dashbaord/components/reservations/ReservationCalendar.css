@@ -1,0 +1,111 @@
+.reservation-calendar-container {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.reservation-calendar-header h2 {
+  margin: 0;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.calendar-legend {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+/* FullCalendar custom styles */
+.fc {
+  font-family: inherit;
+}
+
+.fc .fc-button-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.fc .fc-button-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+.fc .fc-button-primary:not(:disabled):active,
+.fc .fc-button-primary:not(:disabled).fc-button-active {
+  background-color: #0a58ca;
+  border-color: #0a53be;
+}
+
+.fc-event {
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.fc-event:hover {
+  opacity: 0.85;
+}
+
+.fc-daygrid-event {
+  white-space: normal;
+  align-items: flex-start;
+}
+
+.fc-event-title {
+  font-weight: 500;
+}
+
+/* Loading overlay */
+.calendar-loading {
+  position: relative;
+  min-height: 400px;
+}
+
+.calendar-loading::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .reservation-calendar-header {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .calendar-legend {
+    width: 100%;
+  }
+}

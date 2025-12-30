@@ -1,0 +1,67 @@
+
+body {
+	background-color: #0d1525;
+	color: #e8ecf5;
+}
+
+.auth-screen {
+	min-height: 100vh;
+	background-color: #0d1525;
+}
+
+.auth-gradient {
+	background: radial-gradient(circle at 20% 20%, rgba(60, 130, 255, 0.18), transparent 35%),
+		radial-gradient(circle at 80% 10%, rgba(24, 180, 255, 0.12), transparent 30%),
+		radial-gradient(circle at 50% 80%, rgba(72, 60, 255, 0.12), transparent 40%);
+	filter: blur(30px);
+}
+
+.login-glow {
+	width: 26rem;
+	height: 26rem;
+	background: radial-gradient(circle, rgba(49, 118, 255, 0.35), rgba(13, 21, 37, 0.1));
+	filter: blur(80px);
+	transform: translate(-50%, -50%);
+}
+
+.auth-card {
+	backdrop-filter: blur(6px);
+	background-color: rgba(16, 24, 40, 0.9);
+}
+
+.auth-card .form-control,
+.auth-card .input-group-text,
+.auth-card .btn-outline-secondary {
+	background-color: #0f182a;
+	border-color: #1e2a44;
+}
+
+.auth-card .form-control:focus {
+	border-color: #3b82f6;
+	box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15);
+	background-color: #0f182a;
+	color: #f8fafc;
+}
+
+.auth-card .btn-primary {
+	background: linear-gradient(90deg, #1f6feb, #2563eb);
+	border: none;
+	box-shadow: 0 10px 30px rgba(37, 99, 235, 0.25);
+}
+
+.auth-card .btn-primary:disabled {
+	opacity: 0.8;
+}
+
+.auth-card .btn-link {
+	color: #9ca3af;
+}
+
+.auth-card .btn-link:hover {
+	color: #cbd5e1;
+	text-decoration: none;
+}
+
+.auth-card .text-secondary {
+	color: #9ca3af !important;
+}
