@@ -68,7 +68,6 @@ export const CLGrid = <T extends any[]>(props: CLGridProps<T>) => {
         </div>
         <h3 className="cl-grid-empty-title">{emptyMessage}</h3>
         <p className="cl-grid-empty-subtitle">
-          No hay resultados para los filtros seleccionados. Intenta ajustar la búsqueda o elimina los filtros.
         </p>
         {globalFilterFields && (
           <Button

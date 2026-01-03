@@ -22,6 +22,10 @@ export class ReservationHistoryService extends parentService<
   getLastReservation() {
     return this.http.get<any[]>(`/last-reservations`);
   }
+
+  reservationDetail(reservation_id: number) {
+    return this.http.get<IReservation>(`/detail/${reservation_id}`);
+  }
 }
 
 export class ReservationStatusService extends parentService<

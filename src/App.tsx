@@ -5,6 +5,7 @@ import { PrivateRoute } from './auth/components/PrivateRoute'
 import { Dashboard } from './dashbaord/pages/Dashboard'
 import { useStore } from './shared/store/store'
 import { ReservationCalendar } from './dashbaord/components/reservations/ReservationCalendar'
+import { ReservationDetail } from './dashbaord/components/dashboard/reservation-detail/ReservationDetail'
 
 function App() {
   const { isAuthenticated } = useStore();
@@ -17,6 +18,7 @@ function App() {
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path='/dashboard/reservas' element={<ReservationCalendar />} />
+          <Route path='/dashboard/reservation-detail/:reservation_id' element={<ReservationDetail />} />
           <Route path='/dashboard/habitaciones' element={<span> in progress</span>} />
           <Route path='/dashboard/huespedes' element={<span> in progress</span>}/>
           <Route path='/dashboard/finanzas' element={<span> in progress</span>} />

@@ -66,7 +66,7 @@ export class parentService<T, TNew = Partial<T>, TUpdate = Partial<T>> {
     }
   }
 
-  async getById(id: string): Promise<T> {
+  async getById(id: number): Promise<T> {
     try {
       const response = await this.http.get<T>(`/${id}`);
       return response.data;

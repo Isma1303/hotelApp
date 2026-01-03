@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CLGrid } from "../../../../shared";
 import { useReservation } from "../../../hooks/useReservationHistory";
 import { HotelService } from "../../../service/hotels.service";
 import { AuthService } from "../../../../auth/auth.service";
 import type { IUser } from "../../../../auth";
 import type { IHotel } from "../../../interfaces/hote.interface";
+import { toast } from "react-toastify";
 
 export const ReservationHistory = () => {
+    const navigate = useNavigate();
     const { fetchLastReservations, loading } = useReservation();
     const [reservations, setReservations] = useState([]);
     const [hotelMap, setHotelMap] = useState<Record<number, string>>({});
     const [userMap, setUserMap] = useState<Record<number, string>>({});
+
 
     useEffect(() => {
         const loadData = async () => {
@@ -86,6 +90,14 @@ export const ReservationHistory = () => {
         );
     };
 
+    const onRowClick = (reservation_id: number) => {
+        try {
+            navigate(`/dashboard/reservation-detail/${reservation_id}`);
+        } catch (error) {
+            toast.error("Error al abrir el detalle de la reserva.");
+        }
+    }
+
 
     const columnsFields = [
         { field: "reservation_number", header: "Numero de Reserva" },
@@ -133,6 +145,7 @@ export const ReservationHistory = () => {
             exportFilename="Ultimas Reservas"
             scrollable={true}
             scrollHeight="400px"
+            onRowClick={(e: any) => onRowClick(e.data.reservation_id)}
         />
     );
 }
