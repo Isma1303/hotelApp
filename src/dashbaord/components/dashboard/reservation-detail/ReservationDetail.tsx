@@ -5,279 +5,392 @@ import { useReservationDetail } from "../../../hooks/useReservationDetail";
 import "./ReservatopmDetail.css";
 
 export const ReservationDetail = () => {
-    const { reservation_id } = useParams<{ reservation_id: string }>();
-    const navigate = useNavigate();
-    const { loading, reservation, fetchReservationDetail } = useReservationDetail();
+  const { reservation_id } = useParams<{ reservation_id: string }>();
+  const navigate = useNavigate();
+  const { loading, reservation, fetchReservationDetail } =
+    useReservationDetail();
 
-    useEffect(() => {
-        const loadData = async () => {
-            if (!reservation_id) {
-                toast.error("ID de reserva no válido");
-                navigate("/dashboard");
-                return;
-            }
-
-            try {
-                await fetchReservationDetail(parseInt(reservation_id));
-            } catch (error) {
-                toast.error("Error al cargar el detalle de la reserva");
-                console.error(error);
-            }
-        };
-
-        loadData();
-    }, [reservation_id]);
-
-    const formatDate = (date: Date | string) => {
-        if (!date) return "-";
-        const d = new Date(date);
-        if (isNaN(d.getTime())) return "-";
-        const day = String(d.getDate()).padStart(2, "0");
-        const month = String(d.getMonth() + 1).padStart(2, "0");
-        const year = d.getFullYear();
-        return `${day}/${month}/${year}`;
-    };
-
-    const calculateNights = () => {
-        if (!reservation) return 0;
-        const checkIn = new Date(reservation.check_in);
-        const checkOut = new Date(reservation.check_out);
-        const diffTime = Math.abs(checkOut.getTime() - checkIn.getTime());
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        return diffDays || 1; 
-    };
-
-    const getStatusConfig = (statusId: number) => {
-        const statusConfigs: Record<number, { label: string; colorVar: string; bgVar: string; icon: string }> = {
-            1: { label: 'Confirmada', colorVar: 'var(--color-success)', bgVar: 'var(--color-success-bg)', icon: 'bi-check-circle-fill' },
-            2: { label: 'Pagada', colorVar: 'var(--color-success)', bgVar: 'var(--color-success-bg)', icon: 'bi-check-circle-fill' },
-            3: { label: 'Pendiente', colorVar: 'var(--color-warning)', bgVar: 'var(--color-warning-bg)', icon: 'bi-clock-fill' },
-            4: { label: 'Cancelada', colorVar: 'var(--color-danger)', bgVar: 'var(--color-danger-bg)', icon: 'bi-x-circle-fill' },
-            5: { label: 'Vencida', colorVar: 'var(--color-danger)', bgVar: 'var(--color-danger-bg)', icon: 'bi-x-circle-fill' },
-        };
-        return statusConfigs[statusId] || { label: 'Desconocido', colorVar: 'var(--text-disabled)', bgVar: 'var(--border-light)', icon: 'bi-circle-fill' };
-    };
-
-    const handlePrint = () => {
-        window.print();
-    };
-
-    const handleBack = () => {
+  useEffect(() => {
+    const loadData = async () => {
+      if (!reservation_id) {
+        toast.error("Error al cargar el detalle de la reserva");
         navigate("/dashboard");
+        return;
+      }
+
+      try {
+        const data = await fetchReservationDetail(Number(reservation_id));
+        return data;
+      } catch (error) {
+        toast.error("Error al cargar el detalle de la reserva");
+        console.error(error);
+      }
     };
 
-    if (loading) {
-        return (
-            <div className="reservation-detail-loading">
-                <div className="spinner">
-                    <i className="bi bi-arrow-clockwise"></i>
-                </div>
-                <p>Cargando detalle de reserva...</p>
-            </div>
-        );
-    }
+    loadData();
+  }, [reservation_id]);
 
-    // Si reservation es null o no es un objeto plano, mostrar advertencia
-    if (!reservation || typeof reservation !== 'object' || Array.isArray(reservation)) {
-        return (
-            <div className="reservation-detail-error">
-                <i className="bi bi-exclamation-triangle"></i>
-                <h2>No se encontró la reserva o el formato es incorrecto</h2>
-                <pre style={{color: 'var(--color-danger)', background: 'var(--bg-tertiary)', padding: 16, borderRadius: 8, maxWidth: 600, overflowX: 'auto'}}>
-                  {JSON.stringify(reservation, null, 2)}
-                </pre>
-                <button onClick={handleBack} className="btn-back">
-                    Volver al Dashboard
-                </button>
-            </div>
-        );
-    }
+  const formatDate = (date: Date | string) => {
+    if (!date) return "-";
+    const d = new Date(date);
+    if (isNaN(d.getTime())) return "-";
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = String(d.getMonth() + 1).padStart(2, "0");
+    const year = d.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
 
-    // Si por error el objeto tiene un campo data, usar ese campo
-    const data = (reservation as any).data ? (reservation as any).data : reservation;
-    const statusConfig = getStatusConfig(data.reservation_status_id);
-    const nights = calculateNights();
+  const calculateNights = (
+    checkInRaw: Date | string,
+    checkOutRaw: Date | string
+  ) => {
+    const checkIn = new Date(checkInRaw);
+    const checkOut = new Date(checkOutRaw);
+    const diffTime = checkOut.getTime() - checkIn.getTime();
+    const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays > 0 ? diffDays : 1;
+  };
 
-    console.log("Rendering reservation:", data);
-    console.log("Nights:", nights);
-    console.log("Status config:", statusConfig);
-
+  const getStatusConfig = (statusId: number) => {
+    const statusConfigs: Record<
+      number,
+      { label: string; colorVar: string; bgVar: string; icon: string }
+    > = {
+      1: {
+        label: "Confirmada",
+        colorVar: "var(--color-success)",
+        bgVar: "var(--color-success-bg)",
+        icon: "bi-check-circle-fill",
+      },
+      2: {
+        label: "Pagada",
+        colorVar: "var(--color-success)",
+        bgVar: "var(--color-success-bg)",
+        icon: "bi-check-circle-fill",
+      },
+      3: {
+        label: "Pendiente",
+        colorVar: "var(--color-warning)",
+        bgVar: "var(--color-warning-bg)",
+        icon: "bi-clock-fill",
+      },
+      4: {
+        label: "Cancelada",
+        colorVar: "var(--color-danger)",
+        bgVar: "var(--color-danger-bg)",
+        icon: "bi-x-circle-fill",
+      },
+      5: {
+        label: "Vencida",
+        colorVar: "var(--color-danger)",
+        bgVar: "var(--color-danger-bg)",
+        icon: "bi-x-circle-fill",
+      },
+    };
     return (
-        <div className="reservation-detail-container">
-            <div className="reservation-detail-header">
-                <button onClick={handleBack} className="btn-back">
-                    <i className="bi bi-arrow-left"></i>
-                    Volver
-                </button>
-                <h1 className="reservation-detail-title">
-                    Detalle de Reserva #{reservation.reservation_number}
-                </h1>
-                <button onClick={handlePrint} className="btn-print">
-                    <i className="bi bi-printer"></i>
-                    Imprimir
-                </button>
-            </div>
-
-            <div className="reservation-detail-content">
-                {/* Status Card */}
-                <div className="detail-card status-card">
-                    <div className="card-header">
-                        <i className="bi bi-info-circle"></i>
-                        <h3>Estado de la Reserva</h3>
-                    </div>
-                    <div className="card-body">
-                        <div
-                            className="status-badge-large"
-                            style={{
-                                backgroundColor: statusConfig.bgVar,
-                                color: statusConfig.colorVar,
-                            }}
-                        >
-                            <i className={`bi ${statusConfig.icon}`}></i>
-                            <span>{statusConfig.label}</span>
-                        </div>
-                        <div className="status-info">
-                            <div className="info-item">
-                                <span className="info-label">Número de Reserva:</span>
-                                <span className="info-value">{reservation.reservation_number}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Customer Info */}
-                <div className="detail-card">
-                    <div className="card-header">
-                        <i className="bi bi-person"></i>
-                        <h3>Información del Cliente</h3>
-                    </div>
-                    <div className="card-body">
-                        <div className="info-grid">
-                            <div className="info-item">
-                                <span className="info-label">
-                                    <i className="bi bi-hash"></i>
-                                    ID Cliente:
-                                </span>
-                                <span className="info-value">{reservation.user_id}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Hotel and Room Info */}
-                <div className="detail-card">
-                    <div className="card-header">
-                        <i className="bi bi-building"></i>
-                        <h3>Información del Hotel y Habitación</h3>
-                    </div>
-                    <div className="card-body">
-                        <div className="info-grid">
-                            <div className="info-item">
-                                <span className="info-label">
-                                    <i className="bi bi-hash"></i>
-                                    ID Hotel:
-                                </span>
-                                <span className="info-value">{reservation.hotel_id}</span>
-                            </div>
-                            <div className="info-item">
-                                <span className="info-label">
-                                    <i className="bi bi-door-closed"></i>
-                                    Habitación:
-                                </span>
-                                <span className="info-value">
-                                    {reservation.room_number || `Habitación ${reservation.room_id}`}
-                                </span>
-                            </div>
-                            {reservation.room_type && (
-                                <div className="info-item">
-                                    <span className="info-label">
-                                        <i className="bi bi-tag"></i>
-                                        Tipo de Habitación:
-                                    </span>
-                                    <span className="info-value">{reservation.room_type}</span>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                </div>
-
-                {/* Dates Info */}
-                <div className="detail-card">
-                    <div className="card-header">
-                        <i className="bi bi-calendar-range"></i>
-                        <h3>Fechas de Estadía</h3>
-                    </div>
-                    <div className="card-body">
-                        <div className="dates-container">
-                            <div className="date-box">
-                                <i className="bi bi-calendar-check"></i>
-                                <div className="date-info">
-                                    <span className="date-label">Check-in</span>
-                                    <span className="date-value">{formatDate(reservation.check_in)}</span>
-                                </div>
-                            </div>
-                            <div className="date-separator">
-                                <i className="bi bi-arrow-right"></i>
-                                <span className="nights-badge">{nights} {nights === 1 ? 'noche' : 'noches'}</span>
-                            </div>
-                            <div className="date-box">
-                                <i className="bi bi-calendar-x"></i>
-                                <div className="date-info">
-                                    <span className="date-label">Check-out</span>
-                                    <span className="date-value">{formatDate(reservation.check_out)}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Payment Info */}
-                <div className="detail-card payment-card">
-                    <div className="card-header">
-                        <i className="bi bi-cash-coin"></i>
-                        <h3>Información de Pago</h3>
-                    </div>
-                    <div className="card-body">
-                        <div className="payment-summary">
-                            {reservation.payment_method_nm && (
-                                <div className="payment-row">
-                                    <span className="payment-label">
-                                        <i className="bi bi-credit-card"></i>
-                                        Método de Pago:
-                                    </span>
-                                    <span className="payment-value">{reservation.payment_method_nm}</span>
-                                </div>
-                            )}
-                            <div className="payment-row">
-                                <span className="payment-label">Precio por noche:</span>
-                                <span className="payment-value">
-                                    Q{nights > 0 ? (Number(reservation.total) / nights).toFixed(2) : '0.00'}
-                                </span>
-                            </div>
-                            <div className="payment-row">
-                                <span className="payment-label">Número de noches:</span>
-                                <span className="payment-value">{nights}</span>
-                            </div>
-                            <div className="payment-row payment-total">
-                                <span className="payment-label">Total:</span>
-                                <span className="payment-value">Q{Number(reservation.total).toFixed(2)}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="reservation-detail-actions">
-                <button className="btn-secondary" onClick={handleBack}>
-                    <i className="bi bi-x-circle"></i>
-                    Cerrar
-                </button>
-                <button className="btn-primary" onClick={handlePrint}>
-                    <i className="bi bi-printer"></i>
-                    Imprimir Detalle
-                </button>
-            </div>
-        </div>
+      statusConfigs[statusId] || {
+        label: "Desconocido",
+        colorVar: "var(--text-disabled)",
+        bgVar: "var(--border-light)",
+        icon: "bi-circle-fill",
+      }
     );
+  };
+
+  const handlePrint = () => {
+    window.print();
+  };
+
+  const handleBack = () => {
+    navigate("/dashboard");
+  };
+
+  if (loading) {
+    return (
+      <div className="reservation-detail-loading">
+        <div className="spinner">
+          <i className="bi bi-arrow-clockwise"></i>
+        </div>
+        <p>Cargando detalle de reserva...</p>
+      </div>
+    );
+  }
+
+  if (
+    !reservation ||
+    typeof reservation !== "object" ||
+    Array.isArray(reservation)
+  ) {
+    return (
+      <div className="reservation-detail-error">
+        <i className="bi bi-exclamation-triangle"></i>
+        <h2>No se encontró la reserva o el formato es incorrecto</h2>
+        <pre
+          style={{
+            color: "var(--color-danger)",
+            background: "var(--bg-tertiary)",
+            padding: 16,
+            borderRadius: 8,
+            maxWidth: 600,
+            overflowX: "auto",
+          }}
+        >
+          {JSON.stringify(reservation, null, 2)}
+        </pre>
+        <button onClick={handleBack} className="btn-back">
+          Volver al Dashboard
+        </button>
+      </div>
+    );
+  }
+
+  const data = reservation.data;
+  const statusConfig = getStatusConfig(data.reservation_status_id!);
+  const nights = calculateNights(data.check_in, data.check_out);
+
+  return (
+    <div className="rd-page">
+      <div className="rd-header">
+        <button onClick={handleBack} className="rd-back">
+          <i className="bi bi-arrow-left"></i>
+          Volver
+        </button>
+
+        <div className="rd-titleBlock">
+          <h1 className="rd-title">Detalle de Reserva</h1>
+          <p className="rd-subtitle">
+            ID Referencia:{" "}
+            <span className="rd-link">#{data.reservation_number}</span>
+          </p>
+        </div>
+
+        <button className="rd-print" onClick={handlePrint}>
+          <i className="bi bi-printer"></i>
+          Imprimir Detalle
+        </button>
+      </div>
+
+      <div className="rd-grid">
+        <section className="rd-card rd-statusCard">
+          <div className="rd-cardTop">
+            <div className="rd-cardTitle">
+              <span className="rd-icon rd-icon-blue">
+                <i className="bi bi-info-circle"></i>
+              </span>
+              <h3>Estado de la Reserva</h3>
+            </div>
+
+            <div
+              className="rd-statusPill"
+              style={{
+                background: statusConfig.bgVar,
+                color: statusConfig.colorVar,
+              }}
+            >
+              <i className={`bi ${statusConfig.icon}`}></i>
+              <span>{statusConfig.label.toUpperCase()}</span>
+            </div>
+          </div>
+        </section>
+
+        <section className="rd-card rd-col">
+          <div className="rd-cardHead">
+            <span className="rd-icon rd-icon-blueSoft">
+              <i className="bi bi-person"></i>
+            </span>
+            <h3>Información del Cliente</h3>
+          </div>
+          <div className="rd-divider"></div>
+
+          <div className="rd-cardBody">
+            <div className="rd-kv">
+              <span className="rd-k">NOMBRE DEL CLIENTE</span>
+              <span className="rd-v">
+                {data.first_name} {data.last_name}
+              </span>
+            </div>
+
+            <div className="rd-kv rd-kvRow">
+              <span className="rd-k">CONTACTO</span>
+              <span className="rd-v rd-muted">
+                <i className="bi bi-telephone me-2"></i>
+                {data.phone || "-"}
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <section className="rd-card rd-col">
+          <div className="rd-cardHead">
+            <span className="rd-icon rd-icon-purpleSoft">
+              <i className="bi bi-building"></i>
+            </span>
+            <h3>Hotel y Habitación</h3>
+          </div>
+          <div className="rd-divider"></div>
+
+          <div className="rd-cardBody">
+            <div className="rd-kv">
+              <span className="rd-k">HOTEL</span>
+              <span className="rd-v">{data.hotel_name || "-"}</span>
+            </div>
+
+            <div className="rd-chipRow">
+              <div className="rd-chip">
+                <span className="rd-chipK">Habitación</span>
+                <span className="rd-chipV">{data.room_number || "-"}</span>
+              </div>
+              <div className="rd-chip">
+                <span className="rd-chipK">Tipo</span>
+                <span className="rd-chipV">{data.room_type || "-"}</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="rd-card rd-col">
+          <div className="rd-cardHead">
+            <span className="rd-icon rd-icon-orangeSoft">
+              <i className="bi bi-calendar-event"></i>
+            </span>
+            <h3>Fechas de Estadía</h3>
+          </div>
+          <div className="rd-divider"></div>
+
+          <div className="rd-cardBody">
+            <div className="rd-dateList">
+              <div className="rd-dateRow">
+                <div className="rd-dateBox">
+                  <span className="rd-dateMonth">
+                    {new Date(data.check_in)
+                      .toLocaleString("es", { month: "short" })
+                      .toUpperCase()}
+                  </span>
+                  <span className="rd-dateDay">
+                    {String(new Date(data.check_in).getDate()).padStart(2, "0")}
+                  </span>
+                </div>
+                <div className="rd-dateInfo">
+                  <span className="rd-dateLabel">CHECK-IN</span>
+                  <span className="rd-dateValue">
+                    {new Date(data.check_in).toLocaleDateString("es", {
+                      weekday: "long",
+                      year: "numeric",
+                    })}
+                  </span>
+                  <span className="rd-dateTime">
+                    {new Date(data.check_in).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </span>
+                </div>
+              </div>
+
+              <div className="rd-dateConnector"></div>
+
+              <div className="rd-dateRow">
+                <div className="rd-dateBox">
+                  <span className="rd-dateMonth">
+                    {new Date(data.check_out)
+                      .toLocaleString("es", { month: "short" })
+                      .toUpperCase()}
+                  </span>
+                  <span className="rd-dateDay">
+                    {String(new Date(data.check_out).getDate()).padStart(
+                      2,
+                      "0"
+                    )}
+                  </span>
+                </div>
+                <div className="rd-dateInfo">
+                  <span className="rd-dateLabel">CHECK-OUT</span>
+                  <span className="rd-dateValue">
+                    {new Date(data.check_out).toLocaleDateString("es", {
+                      weekday: "long",
+                      year: "numeric",
+                    })}
+                  </span>
+                  <span className="rd-dateTime">
+                    {new Date(data.check_out).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </span>
+                </div>
+              </div>
+
+              <div className="rd-nightsPill">
+                <i className="bi bi-moon"></i>
+                <span>
+                  {nights} {nights === 1 ? "Noche" : "Noches"}
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="rd-card rd-paymentCard">
+          <div className="rd-cardHead">
+            <span className="rd-icon rd-icon-pinkSoft">
+              <i className="bi bi-credit-card"></i>
+            </span>
+            <h3>Información de Pago</h3>
+          </div>
+          <div className="rd-divider"></div>
+
+          <div className="rd-paymentBody">
+            <div className="rd-payLeft">
+              <div className="rd-payMethod">
+                <div className="rd-payMethodIcon">
+                  <i className="bi bi-cash-coin"></i>
+                </div>
+                <div>
+                  <div className="rd-k">Método de Pago</div>
+                  <div className="rd-v">
+                    {(data.payment_method_nm || "—").toUpperCase()}
+                  </div>
+                </div>
+              </div>
+
+              <p className="rd-payNote">
+                El pago se ha registrado correctamente en el sistema. Para
+                cualquier aclaración, utilice el ID de referencia #
+                {data.reservation_number}.
+              </p>
+            </div>
+
+            <div className="rd-payRight">
+              <div className="rd-payRow">
+                <span>Precio por noche</span>
+                <strong>
+                  Q
+                  {nights > 0
+                    ? (Number(data.total) / nights).toFixed(2)
+                    : "0.00"}
+                </strong>
+              </div>
+              <div className="rd-payRow">
+                <span>Número de noches</span>
+                <strong>x{nights}</strong>
+              </div>
+              <div className="rd-payRow">
+                <span>Impuestos y Servicios</span>
+                <strong className="rd-green">Incluido</strong>
+              </div>
+
+              <div className="rd-payTotal">
+                <span>Total Pagado</span>
+                <span className="rd-totalAmount">
+                  Q{Number(data.total).toFixed(2)}
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div className="rd-bottomAccent"></div>
+        </section>
+      </div>
+    </div>
+  );
 };

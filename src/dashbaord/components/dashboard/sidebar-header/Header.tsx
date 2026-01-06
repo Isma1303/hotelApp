@@ -21,28 +21,7 @@ export const Header = () => {
         </div>
 
         <div className="header-right">
-          <button className="btn-new-reservation">
-            <span>Nueva Reserva</span>
-          </button>
-
-          <button className="btn-icon notifications-btn" aria-label="Notificaciones">
-            <i className="bi bi-bell"></i>
-            <span className="notification-badge">3</span>
-          </button>
-
           <div className="user-menu">
-            <button
-              className="user-avatar-btn"
-              onClick={() => setShowUserMenu(!showUserMenu)}
-              aria-label="Menú de usuario"
-            >
-              <div className="avatar">
-                <img
-                  src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${user?.email || 'user'}`}
-                  alt="User avatar"
-                />
-              </div>
-            </button>
 
             {showUserMenu && (
               <div className="dropdown-menu">

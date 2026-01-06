@@ -1,21 +1,23 @@
-/* Dark theme for CLGrid */
+/* Light theme for CLGrid */
 .cl-grid-wrapper {
   display: flex;
   flex-direction: column;
   gap: 0;
-  background-color: #0f182a !important;
-  border: 1px solid #1e2a44 !important;
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
   border-radius: 0.75rem !important;
   overflow: hidden;
+  box-shadow: var(--shadow-md);
 }
 
 .cl-grid-title {
   margin: 0;
   padding: 1rem 1.5rem 0.5rem 1.5rem;
   font-size: 1.125rem;
-  font-weight: 600;
-  color: #e8ecf5;
-  background-color: #0f182a;
+  font-weight: 700;
+  color: #0f172a;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e7eef7;
 }
 
 .cl-grid-container {
@@ -26,46 +28,46 @@
 
 /* DataTable dark theme */
 .cl-grid-wrapper .cl-grid-dark {
-  background-color: #0f182a !important;
-  color: #e8ecf5 !important;
+  background-color: #ffffff !important;
+  color: #0f172a !important;
   border: none !important;
   border-radius: 0 !important;
   overflow: hidden;
 }
 
 .cl-grid-dark {
-  background-color: #0f182a !important;
-  color: #e8ecf5 !important;
-  border: 1px solid #1e2a44 !important;
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #e2e8f0 !important;
   border-radius: 0.75rem !important;
   overflow: hidden;
 }
 
 .cl-grid-dark .p-datatable {
-  border-color: #1e2a44 !important;
+  border-color: #e2e8f0 !important;
 }
 
 .cl-grid-dark .p-datatable .p-datatable-header {
-  background-color: #0a0f1a !important;
-  color: #e8ecf5 !important;
-  border-color: #1e2a44 !important;
+  background-color: #f6f8fc !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
   padding: 0 !important;
   border: none !important;
 }
 
 .cl-grid-dark .p-datatable .p-datatable-footer {
-  background-color: #0a0f1a !important;
-  color: #e8ecf5 !important;
-  border-color: #1e2a44 !important;
+  background-color: #f6f8fc !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
   padding: 1rem !important;
 }
 
 .cl-grid-dark .p-datatable-thead > tr > th {
-  background-color: #0a0f1a !important;
-  color: #e8ecf5 !important;
-  border-color: #1e2a44 !important;
-  border: 1px solid #1e2a44 !important;
-  font-weight: 600;
+  background-color: #f3f6fb !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+  border: 1px solid #e2e8f0 !important;
+  font-weight: 700;
   padding: 1rem !important;
   text-align: left !important;
 }
@@ -77,29 +79,29 @@
 }
 
 .cl-grid-dark .p-datatable-tbody > tr {
-  background-color: #0f182a !important;
-  border-color: #1e2a44 !important;
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
 }
 
 .cl-grid-dark .p-datatable-tbody > tr > td {
-  color: #e8ecf5 !important;
-  border: 1px solid #1e2a44 !important;
-  border-color: #1e2a44 !important;
+  color: #0f172a !important;
+  border: 1px solid #e2e8f0 !important;
+  border-color: #e2e8f0 !important;
   padding: 1rem !important;
 }
 
 .cl-grid-dark .p-datatable-tbody > tr:hover {
-  background-color: #1a2440 !important;
+  background-color: #f1f5f9 !important;
 }
 
 .cl-grid-dark .p-datatable-tbody > tr.p-highlight {
-  background-color: #1e2a44 !important;
+  background-color: #e8f1ff !important;
 }
 
 /* Paginator dark theme */
 .cl-grid-dark .p-paginator {
   background-color: transparent !important;
-  color: #e8ecf5 !important;
+  color: #0f172a !important;
   border: none !important;
   padding: 1rem !important;
   gap: 0.5rem;
@@ -116,13 +118,13 @@
 }
 
 .cl-grid-dark .p-paginator .p-paginator-element {
-  color: #e8ecf5 !important;
+  color: #475569 !important;
 }
 
 .cl-grid-dark .p-paginator-pages .p-paginator-page {
-  color: #e8ecf5 !important;
+  color: #475569 !important;
   background-color: transparent !important;
-  border: 1px solid #1e2a44 !important;
+  border: 1px solid #e2e8f0 !important;
   border-radius: 0.375rem;
   min-width: 2.5rem;
   height: 2.5rem;
@@ -139,12 +141,12 @@
 }
 
 .cl-grid-dark .p-paginator-pages .p-paginator-page:hover {
-  background-color: #1e2a44 !important;
+  background-color: #e8f1ff !important;
   border-color: #3b82f6 !important;
 }
 
 .cl-grid-dark .p-paginator .p-paginator-current {
-  color: #9ca3af !important;
+  color: #64748b !important;
   font-size: 0.875rem;
 }
 
@@ -152,8 +154,8 @@
 .cl-grid-dark .p-paginator .p-paginator-prev,
 .cl-grid-dark .p-paginator .p-paginator-next,
 .cl-grid-dark .p-paginator .p-paginator-last {
-  color: #e8ecf5 !important;
-  border: 1px solid #1e2a44 !important;
+  color: #475569 !important;
+  border: 1px solid #e2e8f0 !important;
   border-radius: 0.375rem;
   min-width: 2.5rem;
   height: 2.5rem;
@@ -167,71 +169,71 @@
 .cl-grid-dark .p-paginator .p-paginator-prev:hover,
 .cl-grid-dark .p-paginator .p-paginator-next:hover,
 .cl-grid-dark .p-paginator .p-paginator-last:hover {
-  background-color: #1e2a44 !important;
+  background-color: #e8f1ff !important;
   border-color: #3b82f6 !important;
 }
 
 .cl-grid-dark .p-dropdown {
-  background-color: #0f182a !important;
-  border-color: #1e2a44 !important;
-  color: #e8ecf5 !important;
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
 }
 
 .cl-grid-dark .p-dropdown .p-dropdown-label {
-  color: #e8ecf5 !important;
+  color: #0f172a !important;
 }
 
 .cl-grid-dark .p-dropdown-panel {
-  background-color: #0a0f1a !important;
-  border-color: #1e2a44 !important;
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
 }
 
 .cl-grid-dark .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
-  color: #e8ecf5 !important;
+  color: #0f172a !important;
 }
 
 .cl-grid-dark .p-dropdown-panel .p-dropdown-items .p-dropdown-item:hover {
-  background-color: #1e2a44 !important;
+  background-color: #e8f1ff !important;
 }
 
 /* Input and filter dark theme */
 .cl-grid-wrapper .p-inputtext {
-  background-color: #0f182a !important;
-  border-color: #1e2a44 !important;
-  color: #e8ecf5 !important;
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
 }
 
 .cl-grid-wrapper .p-inputtext:focus {
   border-color: #3b82f6 !important;
   box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15) !important;
-  background-color: #0f182a !important;
+  background-color: #ffffff !important;
 }
 
 .cl-grid-wrapper .p-inputtext::placeholder {
-  color: #6b7280 !important;
+  color: #94a3b8 !important;
 }
 
 .cl-grid-dark .p-inputtext {
-  background-color: #0f182a !important;
-  border-color: #1e2a44 !important;
-  color: #e8ecf5 !important;
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
 }
 
 .cl-grid-dark .p-inputtext:focus {
   border-color: #3b82f6 !important;
   box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15) !important;
-  background-color: #0f182a !important;
+  background-color: #ffffff !important;
 }
 
 .cl-grid-dark .p-inputtext::placeholder {
-  color: #6b7280 !important;
+  color: #94a3b8 !important;
 }
 
 /* Toolbar dark theme */
 .cl-grid-wrapper .p-toolbar {
-  background-color: #0a0f1a !important;
+  background-color: #f6f8fc !important;
   border: none !important;
-  border-bottom: 1px solid #1e2a44 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
   padding: 1rem !important;
   gap: 1rem;
   display: flex;
@@ -285,7 +287,7 @@
 
 /* Buttons in toolbar */
 .cl-grid-wrapper .p-button.p-button-rounded.p-button-text {
-  color: #9ca3af !important;
+  color: #475569 !important;
   border-radius: 0.5rem;
   transition: all 0.2s ease;
   background-color: transparent !important;
@@ -308,8 +310,8 @@
 }
 
 .cl-grid-wrapper .p-button.p-button-outlined {
-  border: 1px solid #1e2a44 !important;
-  color: #9ca3af !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #475569 !important;
   background-color: transparent !important;
 }
 
@@ -320,7 +322,7 @@
 }
 
 .cl-grid-dark .p-datatable .p-datatable-header .p-button.p-button-rounded.p-button-text {
-  color: #9ca3af !important;
+  color: #475569 !important;
   border-radius: 0.5rem;
   transition: all 0.2s ease;
   background-color: transparent !important;
@@ -343,8 +345,8 @@
 }
 
 .cl-grid-dark .p-datatable .p-datatable-header .p-button.p-button-outlined {
-  border: 1px solid #1e2a44 !important;
-  color: #9ca3af !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #475569 !important;
   background-color: transparent !important;
 }
 
@@ -365,17 +367,17 @@
 }
 
 .cl-grid-dark .p-datatable-scrollable .p-datatable-scrollable-body::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(148, 163, 184, 0.35);
   border-radius: 4px;
 }
 
 .cl-grid-dark .p-datatable-scrollable .p-datatable-scrollable-body::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(148, 163, 184, 0.55);
 }
 
 /* Loading overlay */
 .cl-grid-dark .p-datatable-loading-overlay {
-  background-color: rgba(13, 21, 37, 0.8) !important;
+  background-color: rgba(246, 248, 252, 0.9) !important;
 }
 
 .cl-grid-dark .p-datatable-loading-overlay .p-progress-spinner {
@@ -384,7 +386,7 @@
 
 /* Empty message */
 .cl-grid-dark .p-datatable-emptymessage > tr > td {
-  color: #9ca3af !important;
+  color: #64748b !important;
   padding: 2rem !important;
   text-align: center;
 }
@@ -416,8 +418,8 @@
   padding: 3rem 2rem;
   text-align: center;
   min-height: 300px;
-  background-color: #0f182a !important;
-  color: #e8ecf5;
+  background-color: #f6f8fc !important;
+  color: #0f172a;
 }
 
 .cl-grid-empty-icon {
@@ -440,13 +442,13 @@
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
-  color: #e8ecf5;
+  color: #0f172a;
 }
 
 .cl-grid-empty-subtitle {
   margin: 0;
   font-size: 0.875rem;
-  color: #9ca3af;
+  color: #64748b;
   max-width: 400px;
   line-height: 1.5;
 }

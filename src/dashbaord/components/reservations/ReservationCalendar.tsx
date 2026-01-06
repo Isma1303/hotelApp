@@ -18,8 +18,6 @@ export const ReservationCalendar = () => {
     loading,
     createReservation,
     updateReservation,
-    cancelReservation,
-    deleteReservation,
   } = useReservationCalendar();
 
   const [dialogVisible, setDialogVisible] = useState(false);
@@ -75,34 +73,6 @@ export const ReservationCalendar = () => {
     setDialogVisible(true);
   };
 
-  const handleCancelReservation = (reservation: IReservation) => {
-    confirmDialog({
-      message: `¿Está seguro de cancelar la reserva #${reservation.reservation_number}?`,
-      header: "Confirmar cancelación",
-      icon: "pi pi-exclamation-triangle",
-      acceptClassName: "p-button-danger",
-      acceptLabel: "Cancelar Reserva",
-      rejectLabel: "No",
-      accept: async () => {
-        await cancelReservation(reservation.reservation_id.toString());
-      },
-    });
-  };
-
-  const handleDeleteReservation = (reservation: IReservation) => {
-    confirmDialog({
-      message: `¿Está seguro de eliminar permanentemente la reserva #${reservation.reservation_number}?`,
-      header: "Confirmar eliminación",
-      icon: "pi pi-exclamation-triangle",
-      acceptClassName: "p-button-danger",
-      acceptLabel: "Eliminar",
-      rejectLabel: "Cancelar",
-      accept: async () => {
-        await deleteReservation(reservation.reservation_id.toString());
-      },
-    });
-  };
-
   const handleSaveReservation = async (data: any) => {
     if (selectedReservation) {
       return await updateReservation(
@@ -119,12 +89,15 @@ export const ReservationCalendar = () => {
       <ConfirmDialog />
       
       <div className="reservation-calendar-header">
-        <h2>Calendario de Reservas</h2>
+        <div className="reservation-calendar-heading">
+          <h2>Calendario de Reservas</h2>
+          <p className="reservation-calendar-subtitle">Gestiona la disponibilidad y ocupación del hotel.</p>
+        </div>
         <Button
           label="Nueva Reserva"
           icon="pi pi-plus"
           onClick={handleNewReservation}
-          className="p-button-success"
+          className="new-reservation-btn"
         />
       </div>
 

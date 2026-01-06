@@ -4,66 +4,66 @@
   --color-primary: #3b82f6;
   --color-primary-dark: #2563eb;
   --color-primary-light: #60a5fa;
-  
+
   /* Background Colors */
-  --bg-primary: #0d1525;
-  --bg-secondary: #1a1f35;
-  --bg-tertiary: #2d3354;
-  --bg-hover: #1a2440;
-  
+  --bg-primary: #f6f8fc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #eef2f8;
+  --bg-hover: #e8eef7;
+
   /* Text Colors */
-  --text-primary: #ffffff;
-  --text-secondary: #e8ecf5;
-  --text-muted: #9ca3af;
-  --text-disabled: #6b7280;
-  
+  --text-primary: #0f172a;
+  --text-secondary: #1f2937;
+  --text-muted: #64748b;
+  --text-disabled: #94a3b8;
+
   /* Border Colors */
-  --border-primary: #2d3354;
-  --border-secondary: #1e2a44;
-  --border-light: rgba(255, 255, 255, 0.1);
-  
+  --border-primary: #e2e8f0;
+  --border-secondary: #e7eef7;
+  --border-light: rgba(15, 23, 42, 0.06);
+
   /* Status Colors */
-  --color-success: #10b981;
-  --color-success-bg: rgba(16, 185, 129, 0.1);
-  --color-success-light: rgba(16, 185, 129, 0.15);
-  
+  --color-success: #16a34a;
+  --color-success-bg: rgba(22, 163, 74, 0.1);
+  --color-success-light: rgba(22, 163, 74, 0.16);
+
   --color-warning: #f59e0b;
   --color-warning-bg: rgba(245, 158, 11, 0.1);
-  --color-warning-light: rgba(245, 158, 11, 0.15);
-  
+  --color-warning-light: rgba(245, 158, 11, 0.18);
+
   --color-danger: #ef4444;
   --color-danger-bg: rgba(239, 68, 68, 0.1);
-  --color-danger-light: rgba(239, 68, 68, 0.15);
-  
-  --color-info: #60a5fa;
-  --color-info-bg: rgba(96, 165, 250, 0.1);
-  --color-info-light: rgba(96, 165, 250, 0.15);
-  
+  --color-danger-light: rgba(239, 68, 68, 0.16);
+
+  --color-info: #3b82f6;
+  --color-info-bg: rgba(59, 130, 246, 0.1);
+  --color-info-light: rgba(59, 130, 246, 0.16);
+
   /* Shadows */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 6px 16px rgba(0, 0, 0, 0.4);
-  --shadow-xl: 0 12px 30px rgba(0, 0, 0, 0.35);
-  
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 6px 16px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 10px 24px rgba(15, 23, 42, 0.12);
+  --shadow-xl: 0 16px 32px rgba(15, 23, 42, 0.14);
+
   /* Border Radius */
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
   --radius-xl: 1rem;
   --radius-full: 9999px;
-  
+
   /* Spacing */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
-  
+
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-normal: 0.2s ease;
   --transition-slow: 0.3s ease;
-  
+
   /* Typography */
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;

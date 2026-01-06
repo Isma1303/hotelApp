@@ -28,18 +28,41 @@ export const useReservationCalendar = () => {
     setLoading(true);
     try {
       const response = await reservationService.getAll();
-      const calendarEvents: ReservationEvent[] = response.map(
-        (reservation) => ({
-          id: reservation.reservation_id.toString(),
-          title: `Reserva #${reservation.reservation_number} - Habitación #${reservation.room_id}`,
-          start: new Date(reservation.check_in),
-          end: new Date(reservation.check_out),
-          backgroundColor: getStatusColor(reservation.reservation_status_id),
-          borderColor: getStatusColor(reservation.reservation_status_id),
-          extendedProps: {
-            reservation,
-          },
-        })
+      const reservations = Array.isArray(response)
+        ? response
+        : Array.isArray((response as any)?.data)
+        ? (response as any).data
+        : [];
+
+      const calendarEvents: ReservationEvent[] = reservations.map(
+        (reservation: IReservation) => {
+          const start = new Date(reservation.check_in);
+          const end = new Date(reservation.check_out);
+
+          const endInclusive = addOneDay(end);
+
+          const color = getStatusColor(reservation.reservation_status_id);
+          const textColor = getStatusTextColor(
+            reservation.reservation_status_id
+          );
+          const statusClass = getStatusClass(reservation.reservation_status_id);
+
+          return {
+            id: reservation.reservation_id.toString(),
+            title: `Cliente #${reservation.user_id} • Reserva #${reservation.reservation_number}`,
+            start,
+            end: endInclusive,
+            allDay: true,
+            display: "block",
+            backgroundColor: color,
+            borderColor: color,
+            textColor,
+            classNames: ["reservation-badge", statusClass],
+            extendedProps: {
+              reservation,
+            },
+          };
+        }
       );
       setEvents(calendarEvents);
     } catch (error) {
@@ -122,4 +145,26 @@ const getStatusColor = (statusId: number): string => {
     4: "#2196F3", // En proceso - Azul
   };
   return colors[statusId] || "#9E9E9E";
+};
+
+const getStatusTextColor = (statusId: number): string => {
+  // Mejora de contraste: rojo usa texto blanco, el resto texto oscuro.
+  if (statusId === 3) return "#ffffff";
+  return "#0f172a";
+};
+
+const getStatusClass = (statusId: number): string => {
+  const classes: Record<number, string> = {
+    1: "reservation-confirmed",
+    2: "reservation-pending",
+    3: "reservation-cancelled",
+    4: "reservation-inprocess",
+  };
+  return classes[statusId] || "reservation-default";
+};
+
+const addOneDay = (date: Date) => {
+  const next = new Date(date);
+  next.setDate(next.getDate() + 1);
+  return next;
 };

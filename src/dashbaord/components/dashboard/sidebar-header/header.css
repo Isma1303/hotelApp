@@ -213,7 +213,7 @@
 .dropdown-item:hover {
   background: var(--bg-hover);
   color: var(--color-primary);
-}
+
   background: transparent;
   border: none;
   color: #495057;

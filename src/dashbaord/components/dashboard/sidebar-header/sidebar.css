@@ -2,10 +2,10 @@
    Sidebar tokens (fallbacks)
 ========================= */
 :root {
-  --sb-bg: #1a1d2e;
-  --sb-border: rgba(255, 255, 255, 0.1);
-  --sb-text: rgba(255, 255, 255, 0.75);
-  --sb-text-strong: #ffffff;
+  --sb-bg: #ffffff;
+  --sb-border: #e2e8f0;
+  --sb-text: #475569;
+  --sb-text-strong: #0f172a;
 
   --sb-primary: #3b82f6;
   --sb-primary-hover: #2563eb;
@@ -42,7 +42,7 @@
   justify-content: center;
 
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.26);
 }
 
 .sidebar-toggle:hover {
@@ -53,7 +53,7 @@
 .sidebar-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(15, 23, 42, 0.35);
   z-index: 1029;
   animation: fadeIn 0.2s ease;
 }
@@ -78,7 +78,7 @@
   color: var(--sb-text-strong);
 
   border-right: 1px solid var(--sb-border);
-  box-shadow: 2px 0 18px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
 
   z-index: 1030;
 
@@ -121,7 +121,7 @@
   z-index: 1031;
 
   transition: transform 0.2s ease, background 0.2s ease;
-  box-shadow: 0 6px 14px rgba(59, 130, 246, 0.45);
+  box-shadow: 0 8px 18px rgba(59, 130, 246, 0.25);
 }
 
 .sidebar-collapse-btn:hover {
@@ -138,7 +138,7 @@
   gap: 0.75rem;
 
   padding: 1.25rem 1.25rem 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid var(--sb-border);
 }
 
 .sidebar.collapsed .sidebar-logo {
@@ -164,13 +164,13 @@
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.2;
-  color: #fff;
+  color: var(--sb-text-strong);
 }
 
 .logo-text p {
   margin: 4px 0 0;
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: #94a3b8;
 }
 
 /* =========================
@@ -218,14 +218,14 @@
 }
 
 .nav-link:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
+  background: #f0f5ff;
+  color: var(--sb-text-strong);
 }
 
 .nav-link.active {
   background: var(--sb-primary);
   color: #fff;
-  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.25);
+  box-shadow: 0 10px 22px rgba(59, 130, 246, 0.25);
 }
 
 .nav-link i {
@@ -273,8 +273,8 @@
 }
 
 .logout-btn:hover {
-  background: rgba(239, 68, 68, 0.15);
-  color: #ef4444;
+  background: rgba(239, 68, 68, 0.12);
+  color: #b91c1c;
 }
 
 .logout-btn i {
@@ -298,11 +298,11 @@
   background: transparent;
 }
 .sidebar-nav::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(148, 163, 184, 0.35);
   border-radius: 3px;
 }
 .sidebar-nav::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.32);
+  background: rgba(148, 163, 184, 0.5);
 }
 
 /* =========================
@@ -349,4 +349,178 @@
     transition: none !important;
     animation: none !important;
   }
+}
+
+/* =========================
+   LOOK like screenshot (PrimeSidebar + custom classes)
+   Pegar al final del sidebar.css
+========================= */
+
+/* Ajuste base PrimeSidebar (quita paddings/estilos default) */
+.sidebar.p-sidebar {
+  padding: 0 !important;
+  border: 0 !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+.sidebar .p-sidebar-content {
+  padding: 0 !important;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Base sidebar */
+.sidebar {
+  background: #ffffff !important;
+  border-right: 1px solid #e6eef7 !important;
+  box-shadow: none !important;
+}
+
+/* (Opcional) si quieres un separador suave como en la imagen */
+.sidebar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -1px;
+  width: 1px;
+  height: 100%;
+  background: #e6eef7;
+}
+
+/* =========================
+   Logo (top)
+========================= */
+.sidebar-logo {
+  border-bottom: 0 !important;
+  padding: 22px 18px 10px !important;
+  gap: 12px !important;
+}
+
+.logo-circle {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 50% !important;
+  background: #0f3d3e !important; /* verde/teal oscuro como screenshot */
+  box-shadow: none !important;
+  color: #d8f3dc !important; /* iconito claro */
+  font-size: 18px !important;
+}
+
+.logo-text h3 {
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  color: #0f172a !important;
+}
+
+.logo-text p {
+  font-size: 14px !important;
+  margin-top: 2px !important;
+  color: #94a3b8 !important;
+}
+
+/* =========================
+   NAV spacing
+========================= */
+.sidebar-nav {
+  padding: 10px 12px !important;
+}
+
+/* Items */
+.nav-item {
+  margin-bottom: 6px !important;
+}
+
+.nav-link {
+  border-radius: 12px !important;
+  padding: 12px 14px !important;
+  gap: 12px !important;
+
+  background: transparent !important;
+  color: #0f172a !important;
+
+  font-size: 15px !important;
+  font-weight: 600 !important;
+
+  transition: background 0.15s ease, color 0.15s ease !important;
+}
+
+.nav-link i {
+  font-size: 18px !important;
+  width: 22px !important;
+  color: #0f172a !important;
+}
+
+/* Hover (suave) */
+.nav-link:hover {
+  background: #f3f6fb !important;
+  color: #0f172a !important;
+}
+
+/* Active (pill azul claro, sin shadow) */
+.nav-link.active {
+  background: #e8f1ff !important;
+  color: #1d4ed8 !important;
+  box-shadow: none !important;
+}
+
+.nav-link.active i {
+  color: #1d4ed8 !important;
+}
+
+/* Label */
+.nav-link .nav-label {
+  color: inherit !important;
+}
+
+/* Collapsed */
+.sidebar.collapsed .nav-link {
+  justify-content: center !important;
+  padding: 12px !important;
+}
+
+/* =========================
+   Footer (como screenshot: simple y limpio)
+========================= */
+.sidebar-footer {
+  margin-top: auto;
+  padding: 16px 12px 18px !important;
+  border-top: 1px solid #eef2f7 !important;
+}
+
+.logout-btn {
+  border-radius: 12px !important;
+  padding: 12px 14px !important;
+  gap: 12px !important;
+
+  background: transparent !important;
+  color: #0f172a !important;
+
+  font-size: 15px !important;
+  font-weight: 600 !important;
+}
+
+/* Hover igual que menú (sin rojo fuerte) */
+.logout-btn:hover {
+  background: #f3f6fb !important;
+  color: #0f172a !important;
+}
+
+.logout-btn i {
+  font-size: 18px !important;
+  width: 22px !important;
+  color: #0f172a !important;
+}
+
+.sidebar-collapse-btn {
+  background: #ffffff !important;
+  color: #1d4ed8 !important;
+  border: 1px solid #e6eef7 !important;
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.08) !important;
+}
+
+.sidebar-collapse-btn:hover {
+  background: #f3f6fb !important;
+  transform: scale(1.05);
 }
